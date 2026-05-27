@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sorpresa Romántica</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#ffb6c1,#ffc0cb,#ffe4e1);
+    overflow-y:auto; /* PERMITE SCROLL */
+    overflow-x:hidden;
+    padding:25px 15px 50px;
+    position:relative;
+    display:flex;
+    justify-content:center;
+}
+
+.container{
+    width:100%;
+    max-width:430px;
+    background:rgba(255,255,255,0.14);
+    backdrop-filter:blur(10px);
+    border-radius:30px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,0.15);
+    z-index:2;
+    animation:fadeIn 1.5s ease;
+    margin:auto 0;
+}
+
+h1{
+    color:white;
+    font-size:2rem;
+    margin-bottom:25px;
+    text-shadow:2px 2px 10px rgba(0,0,0,0.2);
+}
+
+button{
+    width:100%;
+    background:white;
+    color:#ff4f81;
+    border:none;
+    padding:18px;
+    font-size:1.05rem;
+    font-weight:bold;
+    border-radius:50px;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+button:active{
+    transform:scale(0.96);
+}
+
+button:hover{
+    background:#fff0f5;
+}
+
+p{
+    color:white;
+    font-size:1rem;
+    line-height:1.9;
+    margin-top:25px;
+    display:none;
+    animation:showText 2s ease forwards;
+    text-shadow:1px 1px 8px rgba(0,0,0,0.18);
+}
+
+.final{
+    font-size:1.1rem;
+    margin-top:30px;
+    color:white;
+    display:none;
+    animation:fadeIn 2s ease forwards;
+    line-height:1.8;
+    text-shadow:1px 1px 10px rgba(0,0,0,0.2);
+    padding-bottom:20px;
+}
+
+.heart{
+    position:fixed;
+    color:white;
+    animation:float 6s linear infinite;
+    opacity:0.7;
+    z-index:1;
+    pointer-events:none;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(100vh) scale(0);
+    }
+    100%{
+        transform:translateY(-10vh) scale(1.5);
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes showText{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Scroll bonito */
+::-webkit-scrollbar{
+    width:6px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:white;
+    border-radius:10px;
+}
+
+/* CELULARES */
+@media (max-width:480px){
+
+    body{
+        padding-top:20px;
+        padding-bottom:50px;
+        align-items:flex-start;
+    }
+
+    .container{
+        padding:30px 20px;
+        border-radius:25px;
+    }
+
+    h1{
+        font-size:1.7rem;
+    }
+
+    p{
+        font-size:0.98rem;
+        line-height:1.8;
+    }
+
+    .final{
+        font-size:1rem;
+    }
+
+    button{
+        font-size:1rem;
+        padding:16px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Música -->
+<audio id="musica" loop>
+    <source src="https://github.com/aromq90-max/carta/blob/main/S%C3%B3lo-Para-Ti-Camila-__-Letra.-%E2%99%A1.publer.com.mp3?raw=true" type="audio/mp3">
+</audio>
+
+<div class="container">
+
+    <h1>💖 Tengo algo para ti 💖</h1>
+
+    <button onclick="mostrarSorpresa()">
+        Presiona aquí mi amor
+    </button>
+
+    <p id="mensaje">
+
+        Quiero que nunca olvides lo increíblemente especial que eres para mí… 🌸❤️
+        <br><br>
+
+        Porque no existe un solo día en el que no admire la mujer maravillosa que eres,
+        esa mujer capaz de iluminar mi vida con una sonrisa
+        y hacer que mi corazón lata más fuerte con solo mirarme.  
+
+        <br><br>
+
+        Me enamora tu ternura, tu forma de cuidar,
+        tu manera de hacerme sentir amado
+        y la tranquilidad que encuentro cuando estoy contigo.  
+
+        <br><br>
+
+        Eres mi lugar favorito,
+        mi pensamiento más bonito
+        y el sueño que jamás quiero perder.  
+
+        <br><br>
+
+        Mereces flores, abrazos eternos,
+        besos llenos de amor,
+        detalles que te hagan sonreír
+        y alguien que jamás deje de recordarte
+        lo hermosa y perfecta que eres.  
+
+        <br><br>
+
+        Y yo… quiero pasar mi vida haciéndolo,
+        porque te amo más de lo que las palabras pueden explicar. 💖
+
+    </p>
+
+    <div class="final" id="final">
+
+        🌹 Hoy llegará algo especial
+        para una mujer que merece sentirse amada todos los días…  
+
+        <br><br>
+
+        Tal vez no puedas adivinar qué es,
+        pero sí quién pensó cada detalle con amor. ❤️
+
+    </div>
+
+</div>
+
+<script>
+
+function mostrarSorpresa(){
+
+    // Música
+    const musica = document.getElementById("musica");
+    musica.play();
+
+    // Ocultar botón
+    document.querySelector("button").style.display = "none";
+
+    // Mostrar mensaje
+    document.getElementById("mensaje").style.display = "block";
+
+    // Scroll suave
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    // Mostrar mensaje final
+    setTimeout(() => {
+
+        document.getElementById("final").style.display = "block";
+
+        // bajar automáticamente al final
+        setTimeout(() => {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth"
+            });
+        }, 500);
+
+    }, 6000);
+}
+
+// Corazones flotando
+function crearCorazon(){
+
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 18 + 14 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(crearCorazon, 300);
+
+</script>
+
+</body>
+</html>
