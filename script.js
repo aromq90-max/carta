@@ -162,3 +162,19 @@ createConfetti();
 }
 
 }
+
+function openLetter(){
+
+document.getElementById("envelope").style.transform="scale(0)";
+
+setTimeout(()=>{
+
+document.getElementById("envelope").style.display="none";
+
+document.getElementById("letter").style.display="block";
+
+typeWriter();
+
+},500);
+
+}
