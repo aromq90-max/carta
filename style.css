@@ -547,3 +547,45 @@ transform:translateY(-100vh);
 }
 
 }
+
+.glow{
+
+position:absolute;
+
+width:250px;
+
+height:250px;
+
+background:#ff5c96;
+
+filter:blur(130px);
+
+border-radius:50%;
+
+opacity:.25;
+
+animation:moveGlow 18s ease infinite;
+
+}
+
+@keyframes moveGlow{
+
+0%{
+
+transform:translate(0,0);
+
+}
+
+50%{
+
+transform:translate(900px,350px);
+
+}
+
+100%{
+
+transform:translate(0,0);
+
+}
+
+}
