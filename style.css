@@ -10,13 +10,17 @@ box-sizing:border-box;
 
 body{
 
-background:linear-gradient(135deg,#ffdde8,#fff6fa);
+margin:0;
 
 font-family:Poppins,sans-serif;
 
-overflow:hidden;
+background:#111;
 
-height:100vh;
+overflow-x:hidden;
+
+min-height:100vh;
+
+color:white;
 
 }
 
