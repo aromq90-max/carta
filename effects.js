@@ -34,7 +34,7 @@ const petal=document.createElement("div");
 
 petal.className="petal";
 
-petal.innerHTML="🌸";
+petal.innerHTML="🌹";
 
 petal.style.left=Math.random()*100+"vw";
 
@@ -50,7 +50,7 @@ petal.remove();
 
 },15000);
 
-},350);
+},120);
 
 /*==========================
       BRILLOS
