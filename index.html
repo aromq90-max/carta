@@ -1,334 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Feliz Primer Mes ❤️</title>
+<title>Julio ❤️</title>
 
-<style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-body{
-    background:linear-gradient(135deg,#ffd1e6,#ffe4f1,#fff5fa);
-    overflow-x:hidden;
-    color:#5d2348;
-}
+<link rel="stylesheet" href="style.css">
 
-/* Pantalla Inicial */
-
-#inicio{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    background:linear-gradient(135deg,#ffb6d5,#ffd6e7,#fff0f7);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    z-index:9999;
-}
-
-.contenido-inicio{
-    padding:20px;
-    max-width:800px;
-}
-
-.contenido-inicio h1{
-    font-size:3rem;
-    color:#ff4f8b;
-    margin-bottom:20px;
-}
-
-.contenido-inicio p{
-    font-size:1.3rem;
-    margin-bottom:30px;
-}
-
-#abrirCarta{
-    border:none;
-    background:#ff4f8b;
-    color:white;
-    padding:18px 40px;
-    border-radius:50px;
-    cursor:pointer;
-    font-size:1.2rem;
-    transition:.3s;
-}
-
-#abrirCarta:hover{
-    transform:scale(1.08);
-}
-
-/* Contenido */
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:40px;
-}
-
-.hero h1{
-    font-size:4rem;
-    color:#ff4f8b;
-    margin-bottom:20px;
-}
-
-.hero p{
-    max-width:800px;
-    line-height:1.8;
-    font-size:1.2rem;
-}
-
-.section{
-    max-width:1100px;
-    margin:auto;
-    padding:80px 25px;
-}
-
-.card{
-    background:white;
-    border-radius:30px;
-    padding:40px;
-    box-shadow:0 10px 40px rgba(255,105,180,.15);
-}
-
-.card h2{
-    text-align:center;
-    color:#ff4f8b;
-    margin-bottom:30px;
-}
-
-.card p{
-    line-height:2;
-    font-size:1.1rem;
-    text-align:justify;
-}
-
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
-    margin-top:30px;
-}
-
-.gallery img{
-    width:100%;
-    height:450px;
-    object-fit:cover;
-    border-radius:20px;
-    box-shadow:0 8px 25px rgba(255,105,180,.25);
-    transition:.4s;
-}
-
-.gallery img:hover{
-    transform:scale(1.03);
-}
-
-footer{
-    text-align:center;
-    padding:60px 20px;
-}
-
-footer h2{
-    color:#ff4f8b;
-    margin-bottom:15px;
-}
-
-.corazon{
-    position:fixed;
-    pointer-events:none;
-    z-index:999;
-    animation:subir 8s linear forwards;
-}
-
-@keyframes subir{
-
-    from{
-        transform:translateY(0);
-        opacity:1;
-    }
-
-    to{
-        transform:translateY(-110vh);
-        opacity:0;
-    }
-}
-
-</style>
 </head>
+
 <body>
 
-<div id="inicio">
+<audio id="music">
 
-    <div class="contenido-inicio">
+<source src="music/SoloParaTi.mp3" type="audio/mpeg">
 
-        <h1>🌸 Feliz Primer Mes Mi Amor 🌸</h1>
-
-        <p>
-            Tengo algo muy especial preparado para ti...
-        </p>
-
-        <button id="abrirCarta">
-            💖 Abrir Carta 💖
-        </button>
-
-    </div>
-
-</div>
-
-<audio id="musica" loop>
-    <source src="https://raw.githubusercontent.com/aromq90-max/carta/main/S%C3%B3lo-Para-Ti-Camila-__-Letra-%E2%99%A5.publer.com.mp3" type="audio/mpeg">
 </audio>
 
-<div id="contenido" style="display:none;">
+<div id="welcome">
 
-<section class="hero">
+<div class="glass">
 
-    <h1>💗 Nuestro Primer Mes 💗</h1>
+<h1>❤️</h1>
 
-    <p>
-        Un mes puede parecer poco para algunas personas,
-        pero para mí ha sido suficiente para descubrir
-        que eres alguien increíble y especial.
-        Gracias por cada sonrisa, cada conversación,
-        cada momento y cada sentimiento hermoso que has
-        despertado en mí.
-    </p>
+<h2>Bienvenida mi amor</h2>
 
-</section>
+<p>
 
-<section class="section">
+Julio será un mes inolvidable.
 
-    <div class="card">
+He preparado algo muy especial para ti.
 
-        <h2>💌 Una Carta Para Ti 💌</h2>
+Cada semana descubrirás un nuevo juego,
 
-        <p>
+una nueva sorpresa
 
-        Hoy celebramos nuestro primer mes juntos.
-        Quizás parezca una pequeña cantidad de tiempo,
-        pero para mí significa muchísimo porque durante
-        estos días lograste convertirte en una parte muy
-        importante de mi vida.
+y una nueva razón para sonreír.
 
-        Gracias por cada instante compartido, por cada
-        sonrisa que me regalaste, por cada conversación
-        que hizo mis días mejores y por cada recuerdo que
-        hemos creado juntos.
+</p>
 
-        Me encanta pensar en todo lo que hemos vivido,
-        porque cada momento contigo tiene algo especial.
+<button id="start">
 
-        Eres esa persona que llegó cuando menos lo esperaba
-        y terminó convertirse en alguien indispensable.
+Comenzar nuestra aventura ❤️
 
-        Hoy quiero agradecerte por existir, por ser tú,
-        por compartir parte de tu vida conmigo y por
-        permitirme formar parte de la tuya.
-
-        Este primer mes es solo el comienzo de una historia
-        que deseo seguir escribiendo a tu lado.
-
-        Te amo muchísimo y espero que podamos seguir creando
-        recuerdos hermosos juntos.
-
-        Feliz primer mes, mi amor. ❤️
-
-        </p>
-
-    </div>
-
-</section>
-
-<section class="section">
-
-    <div class="card">
-
-        <h2>📸 Nuestros Recuerdos 📸</h2>
-
-        <div class="gallery">
-
-            <img src="https://github.com/aromq90-max/carta/blob/main/2.jpeg?raw=true" alt="Foto 1">
-            <img src="https://github.com/aromq90-max/carta/blob/main/5.jpeg?raw=true" alt="Foto 2">
-            <img src="https://github.com/aromq90-max/carta/blob/main/3.jpeg?raw=true" alt="Foto 3">
-
-        </div>
-
-    </div>
-
-</section>
-
-<footer>
-
-    <h2>❤️ Te Amo ❤️</h2>
-
-    <p>
-        Gracias por este hermoso primer mes.
-        Espero que este sea solo el primero de muchos más.
-    </p>
-
-</footer>
+</button>
 
 </div>
 
-<script>
+</div>
 
-const boton = document.getElementById("abrirCarta");
-const inicio = document.getElementById("inicio");
-const contenido = document.getElementById("contenido");
-const musica = document.getElementById("musica");
+<div id="main">
 
-boton.addEventListener("click",()=>{
+<div id="particles"></div>
 
-    musica.play();
+<h1 class="title">
 
-    inicio.style.transition="1s";
-    inicio.style.opacity="0";
+Julio,
 
-    setTimeout(()=>{
+el mes de la mujer que más amo ❤️
 
-        inicio.style.display="none";
-        contenido.style.display="block";
+</h1>
 
-    },1000);
+<p class="subtitle">
 
-});
+Porque el universo fue más bonito
 
-function crearCorazon(){
+desde el día que llegaste a él.
 
-    const corazon=document.createElement("div");
+</p>
 
-    corazon.className="corazon";
-    corazon.innerHTML="💖";
+</div>
 
-    corazon.style.left=Math.random()*100+"vw";
-    corazon.style.bottom="-30px";
-    corazon.style.fontSize=(Math.random()*30+15)+"px";
-
-    document.body.appendChild(corazon);
-
-    setTimeout(()=>{
-        corazon.remove();
-    },8000);
-
-}
-
-setInterval(crearCorazon,300);
-
-</script>
+<script src="script.js"></script>
 
 </body>
+
 </html>
