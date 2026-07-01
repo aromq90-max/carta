@@ -27,8 +27,6 @@
 
 <div id="welcome">
 <div id="background">
-    <div class="glow"></div>
-    <div class="glow"></div>
     <div class="gradient"></div>
     <div id="stars"></div>
     <div id="petals"></div>
@@ -78,6 +76,7 @@ el mes de la mujer que más amo ❤️
 </h1>
 
 <p class="subtitle">
+
 <!-- CONTADOR -->
 <section id="countdown-section">
 
@@ -120,7 +119,11 @@ el mes de la mujer que más amo ❤️
 
     <h2 id="birthday-message"></h2>
 
-</section>  
+</section>
+
+
+
+
 
 Porque el universo fue más bonito
 
@@ -128,12 +131,174 @@ desde el día que llegaste a él.
 
 </p>
 
+
+
+
 </div>
+
+<!-- CARTA DE AMOR -->
+<section id="letter-section">
+
+    <h2 class="section-title">💌 Una carta para ti</h2>
+
+    <div id="envelope" onclick="openLetter()">
+
+        <div class="front">
+            ❤️ Tócame para abrir
+        </div>
+
+        <div class="back">
+            💌
+        </div>
+
+    </div>
+
+    <div id="letter">
+        <p id="typing-text"></p>
+    </div>
+
+</section>
+
+<section id="weeks">
+
+<h2 class="section-title">❤️ Nuestras 4 semanas de julio ❤️</h2>
+
+<div class="weeks-container">
+
+<!-- Semana 1 -->
+<div class="week-card unlocked" id="week1">
+
+<h3>Semana 1 ❤️</h3>
+
+<p>Primer juego del mes</p>
+
+<button onclick="openWeek(1)">Abrir juego</button>
+
+<div class="reward" id="reward1"></div>
+
+</div>
+
+<!-- Semana 2 -->
+<div class="week-card locked" id="week2">
+
+<h3>Semana 2 💖</h3>
+
+<p>Se desbloquea pronto...</p>
+
+<button disabled>Bloqueado 🔒</button>
+
+<div class="reward" id="reward2"></div>
+
+</div>
+
+<!-- Semana 3 -->
+<div class="week-card locked" id="week3">
+
+<h3>Semana 3 🌹</h3>
+
+<p>Se desbloquea pronto...</p>
+
+<button disabled>Bloqueado 🔒</button>
+
+<div class="reward" id="reward3"></div>
+
+</div>
+
+<!-- Semana 4 -->
+<div class="week-card locked" id="week4">
+
+<h3>Semana 4 🎂</h3>
+
+<p>Gran final del mes</p>
+
+<button disabled>Bloqueado 🔒</button>
+
+<div class="reward" id="reward4"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="gallery">
+
+    <h2 class="gallery-title">
+        📸 Nuestros recuerdos
+    </h2>
+
+    <p class="gallery-subtitle">
+        Cada foto es un pedacito de nuestra historia ❤️
+    </p>
+
+    <div class="gallery-grid">
+
+        <div class="photo">
+            <img src="https://github.com/aromq90-max/carta/blob/main/5.jpeg?raw=true">
+        </div>
+
+        <div class="photo">
+            <img src="https://github.com/aromq90-max/carta/blob/main/4.jpeg?raw=true">
+        </div>
+
+        <div class="photo">
+            <img src="https://github.com/aromq90-max/carta/blob/main/1.jpeg?raw=true">
+        </div>
+
+        <div class="photo">
+            <img src="https://github.com/aromq90-max/carta/blob/main/3.jpeg?raw=true">
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BOTÓN SECRETO -->
+<div id="secret-section">
+
+    <button id="openReasons">
+        ❤️ Un regalo secreto para ti
+    </button>
+
+</div>
+
+<!-- PANEL OCULTO -->
+<div id="reasons-panel">
+
+    <div class="reasons-box">
+
+        <h2>💖 25 razones por las que te amo</h2>
+
+        <div id="reasons-list"></div>
+
+        <button id="closeReasons">Cerrar ❤️</button>
+
+    </div>
+
+</div>
+
 
 <script src="script.js"></script>
 
+<canvas id="fireworks"></canvas>
+<div id="confetti-container"></div>
+
+<button id="secret-btn">❤️ Nuestro Amor</button>
+
+<!-- ELEMENTOS SECRETOS -->
+<div id="magic-layer"></div>
+
+<div id="secret-message"></div>
+
+
 </body>
+
 <script src="countdown.js"></script>
 <script src="effects.js"></script>
+<script src="letter.js"></script>
+<script src="reasons.js"></script>
+<script src="fireworks.js"></script>
+<script src="confetti.js"></script>
+<script src="magic.js"></script>
 
 </html>
