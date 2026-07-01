@@ -10,17 +10,13 @@ box-sizing:border-box;
 
 body{
 
-margin:0;
+background:linear-gradient(135deg,#ffdde8,#fff6fa);
 
 font-family:Poppins,sans-serif;
 
-background:#111;
+overflow:hidden;
 
-overflow-x:hidden;
-
-min-height:100vh;
-
-color:white;
+height:100vh;
 
 }
 
@@ -56,11 +52,9 @@ padding:45px;
 
 border-radius:30px;
 
-background:rgba(255,255,255,.72);
+background:rgba(255,255,255,.45);
 
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(255,255,255,.5);
+backdrop-filter:blur(15px);
 
 text-align:center;
 
@@ -69,73 +63,24 @@ box-shadow:0 15px 40px rgba(0,0,0,.2);
 }
 
 .glass h1{
-
-font-size:85px;
-
-filter:drop-shadow(0 0 15px #ff4b8d);
-
-animation:heartbeat 1.5s infinite;
-
-}
-
-@keyframes heartbeat{
-
-0%{
-
-transform:scale(1);
-
-}
-
-20%{
-
-transform:scale(1.15);
-
-}
-
-40%{
-
-transform:scale(1);
-
-}
-
-60%{
-
-transform:scale(1.15);
-
-}
-
-100%{
-
-transform:scale(1);
-
+    font-size:80px;
+    color:#ff3b7d;
+    text-shadow: 0 2px 10px rgba(0,0,0,.2);
 }
 
 .glass h2{
-
-font-family:'Great Vibes', cursive;
-
-font-size:64px;
-
-color:#ff2f75;
-
-margin:20px 0;
-
-text-shadow:
-0 0 8px rgba(255,255,255,.9),
-0 2px 10px rgba(255,47,117,.25);
-
+    font-family:Great Vibes;
+    font-size:60px;
+    color:#ff3b7d;
+    margin:20px;
+    text-shadow: 0 2px 10px rgba(0,0,0,.15);
 }
 
 .glass p{
-
-font-size:20px;
-
-color:#5d4d58;
-
-line-height:36px;
-
-font-weight:500;
-
+    font-size:20px;
+    color:#333;
+    line-height:35px;
+    text-shadow: 0 1px 6px rgba(0,0,0,.1);
 }
 
 button{
@@ -237,6 +182,7 @@ transform:translateY(-120vh);
 }
 
 }
+
 /*=========================
       CONTADOR
 ==========================*/
@@ -415,54 +361,46 @@ transform:scale(1);
       FONDO ANIMADO
 ==========================*/
 
+/*==========================
+FONDO ANIMADO
+==========================*/
+
+body{
+    margin:0;
+    overflow-x:hidden;
+    overflow-y:auto;
+    background:#ffe8f1;
+}
+
 #background{
 
 position:fixed;
 
 top:0;
-
 left:0;
 
 width:100%;
-
 height:100%;
 
 z-index:-1;
 
 overflow:hidden;
 
-}
-
-.gradient{
-
-position:absolute;
-
-width:120%;
-
-height:120%;
-
-left:-10%;
-
-top:-10%;
-
 background:linear-gradient(
-45deg,
-#ffb3d1,
-#ffdce9,
-#ffeff6,
-#ffc3da,
-#ff9fc5
+135deg,
+#ffd8e8,
+#fff4f8,
+#ffe1ec,
+#fff8fb
 );
 
-background-size:500% 500%;
+background-size:400% 400%;
 
-animation:gradientMove 18s ease infinite;
-
-transition:transform .3s;
+animation:fondo 18s ease infinite;
 
 }
 
-@keyframes gradientMove{
+@keyframes fondo{
 
 0%{background-position:0% 50%;}
 
@@ -480,31 +418,34 @@ transition:transform .3s;
 
 position:absolute;
 
-width:3px;
-
-height:3px;
+width:6px;
+height:6px;
 
 background:white;
 
 border-radius:50%;
 
-opacity:.6;
+box-shadow:
 
-animation:twinkle 3s infinite alternate;
+0 0 8px white,
+
+0 0 20px white;
+
+animation:twinkle 2s infinite alternate;
 
 }
 
 @keyframes twinkle{
 
-from{
+0%{
 
 opacity:.2;
 
-transform:scale(.8);
+transform:scale(.5);
 
 }
 
-to{
+100%{
 
 opacity:1;
 
@@ -513,7 +454,6 @@ transform:scale(1.5);
 }
 
 }
-
 /*==========================
       PÉTALOS
 ==========================*/
@@ -560,76 +500,579 @@ opacity:.4;
 
 position:absolute;
 
-width:4px;
+width:7px;
 
-height:4px;
+height:7px;
 
 background:white;
 
 border-radius:50%;
 
-box-shadow:0 0 15px white;
+box-shadow:
 
-animation:sparkFloat 6s linear infinite;
+0 0 10px white,
+
+0 0 25px white,
+
+0 0 40px pink;
 
 opacity:.7;
 
 }
 
-@keyframes sparkFloat{
+/*==========================
+      SEMANAS
+==========================*/
 
-0%{
+.section-title{
 
-transform:translateY(100vh);
+text-align:center;
+
+font-size:40px;
+
+margin-top:80px;
+
+color:#ff3b7d;
+
+font-family:"Great Vibes",cursive;
 
 }
 
-100%{
+.weeks-container{
 
-transform:translateY(-100vh);
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+margin-top:40px;
+
+padding:20px;
 
 }
 
+.week-card{
+
+background:rgba(255,255,255,.25);
+
+backdrop-filter:blur(20px);
+
+border-radius:25px;
+
+padding:25px;
+
+text-align:center;
+
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+transition:.4s;
+
+position:relative;
+
+overflow:hidden;
+
 }
 
-.glow{
+.week-card:hover{
+
+transform:translateY(-10px) scale(1.03);
+
+}
+
+.week-card h3{
+
+color:#ff2f75;
+
+font-size:28px;
+
+}
+
+.week-card p{
+
+color:#444;
+
+margin:15px 0;
+
+}
+
+.week-card button{
+
+padding:12px 25px;
+
+border:none;
+
+border-radius:30px;
+
+background:#ff4d88;
+
+color:white;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.week-card button:hover{
+
+background:#ff1f6b;
+
+transform:scale(1.05);
+
+}
+
+.week-card.locked{
+
+opacity:.5;
+
+filter:blur(1px);
+
+}
+
+.week-card.unlocked{
+
+border:2px solid #ff4d88;
+
+box-shadow:0 0 25px rgba(255,77,136,.3);
+
+}
+
+.reward{
+
+margin-top:15px;
+
+font-weight:bold;
+
+color:#d63384;
+
+font-size:18px;
+
+}
+
+#letter-section{
+
+margin-top:80px;
+
+text-align:center;
+
+}
+
+.section-title{
+
+font-size:30px;
+
+color:#ff4d88;
+
+margin-bottom:30px;
+
+}
+
+#envelope{
+
+width:220px;
+
+height:150px;
+
+margin:auto;
+
+background:#ff4d88;
+
+border-radius:15px;
+
+position:relative;
+
+cursor:pointer;
+
+transition:.4s;
+
+box-shadow:0 15px 30px rgba(0,0,0,.2);
+
+}
+
+#envelope:hover{
+
+transform:scale(1.05);
+
+}
+
+#envelope .front{
 
 position:absolute;
 
-width:250px;
+width:100%;
 
-height:250px;
+height:100%;
 
-background:#ff5c96;
+display:flex;
 
-filter:blur(130px);
+justify-content:center;
 
-border-radius:50%;
+align-items:center;
 
-opacity:.25;
+color:white;
 
-animation:moveGlow 18s ease infinite;
-
-}
-
-@keyframes moveGlow{
-
-0%{
-
-transform:translate(0,0);
+font-size:18px;
 
 }
 
-50%{
+#letter{
 
-transform:translate(900px,350px);
+display:none;
+
+margin-top:30px;
+
+padding:30px;
+
+max-width:700px;
+
+margin-left:auto;
+
+margin-right:auto;
+
+background:rgba(255,255,255,.7);
+
+backdrop-filter:blur(10px);
+
+border-radius:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+font-size:20px;
+
+line-height:1.8;
+
+color:#444;
+
+text-align:left;
+
+}
+/* =========================
+      GALERÍA ROMÁNTICA
+========================= */
+
+#gallery{
+
+margin-top:120px;
+
+text-align:center;
+
+padding:50px 20px;
 
 }
 
-100%{
+.gallery-title{
 
-transform:translate(0,0);
+font-size:55px;
+
+font-family:"Great Vibes",cursive;
+
+color:#ff3b7d;
 
 }
 
+.gallery-subtitle{
+
+margin-top:10px;
+
+font-size:18px;
+
+color:#666;
+
 }
+
+.gallery-grid{
+
+margin-top:50px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+
+gap:25px;
+
+max-width:1000px;
+
+margin-left:auto;
+
+margin-right:auto;
+
+}
+
+.photo{
+
+background:white;
+
+padding:12px;
+
+border-radius:20px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+transition:0.4s;
+
+cursor:pointer;
+
+position:relative;
+
+}
+
+.photo img{
+
+width:100%;
+
+border-radius:15px;
+
+display:block;
+
+}
+
+.photo:hover{
+
+transform:scale(1.05) rotate(-1deg);
+
+box-shadow:0 20px 50px rgba(255,59,125,.3);
+
+}
+/*=========================
+   BOTÓN SECRETO
+==========================*/
+
+#secret-section{
+    margin-top:80px;
+    display:flex;
+    justify-content:center;
+}
+
+#openReasons{
+    background:linear-gradient(90deg,#ff4d88,#ff7aa8);
+    font-size:18px;
+}
+
+/*=========================
+   PANEL OCULTO
+==========================*/
+
+#reasons-panel{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.7);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.reasons-box{
+    width:90%;
+    max-width:700px;
+    max-height:80vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+
+.reasons-box h2{
+    color:#ff4d88;
+    margin-bottom:20px;
+}
+
+#reasons-list{
+    text-align:left;
+    font-size:16px;
+    line-height:28px;
+    color:#555;
+    padding:10px;
+}
+
+#closeReasons{
+    margin-top:20px;
+}
+/*=========================
+   FUEGOS ARTIFICIALES
+==========================*/
+
+canvas#fireworks{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:9999;
+    display:none;
+}
+
+#confetti-container{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:9998;
+}
+
+.confetti{
+    position:absolute;
+    width:10px;
+    height:10px;
+    opacity:0.8;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-10vh) rotate(0deg);
+    }
+    100%{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+/* =========================
+   CAPA DE MAGIA
+========================= */
+
+#magic-layer{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:9999;
+}
+
+/* Rosas / partículas secretas */
+.magic-item{
+    position:absolute;
+    font-size:24px;
+    animation:fadeUp 4s linear forwards;
+    opacity:0;
+}
+
+@keyframes fadeUp{
+    0%{
+        transform:translateY(0) scale(0.5);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-150px) scale(1.2);
+        opacity:0;
+    }
+}
+
+/* Mensaje secreto */
+#secret-message{
+    position:fixed;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,0.3);
+    backdrop-filter:blur(12px);
+    padding:15px 25px;
+    border-radius:20px;
+    color:#ff3b7d;
+    font-size:18px;
+    display:none;
+    z-index:10000;
+    animation:fadeMsg 3s ease;
+}
+
+@keyframes fadeMsg{
+    0%{opacity:0; transform:translateX(-50%) translateY(20px);}
+    20%{opacity:1;}
+    80%{opacity:1;}
+    100%{opacity:0;}
+}
+
+/* =========================
+   FUEGOS ARTIFICIALES
+========================= */
+
+#fireworks{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:9999;
+}
+
+/* CONFETI */
+
+.confetti{
+position:fixed;
+width:10px;
+height:10px;
+background:#ff4d88;
+top:-10px;
+animation:fall linear forwards;
+opacity:.8;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(720deg);
+}
+}
+
+/* BOTÓN SECRETO */
+
+#secret-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+padding:15px 25px;
+border-radius:50px;
+border:none;
+background:#ff4d88;
+color:white;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 10px 20px rgba(0,0,0,.2);
+transition:.3s;
+z-index:9999;
+}
+
+#secret-btn:hover{
+transform:scale(1.1);
+}
+}
+
+/* BOTÓN SECRETO */
+
+#secret-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+padding:15px 25px;
+border-radius:50px;
+border:none;
+background:#ff4d88;
+color:white;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 10px 20px rgba(0,0,0,.2);
+transition:.3s;
+z-index:9999;
+}
+
+#secret-btn:hover{
+transform:scale(1.1);
+}
+
+}
+
