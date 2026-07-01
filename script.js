@@ -162,10 +162,13 @@ createConfetti();
 }
 
 }
+document.getElementById("openBtn").addEventListener("touchstart", openLetter);
 
 function openLetter(){
 
 document.getElementById("envelope").style.transform="scale(0)";
+
+
 
 setTimeout(()=>{
 
