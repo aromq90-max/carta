@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JUEGO2 - Encuentra Nuestros Corazones ❤️</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#ffd6e7,#fff);display:flex;flex-direction:column;align-items:center;color:#d63384}
+h1{margin:20px}
+#board{display:grid;grid-template-columns:repeat(4,90px);gap:12px;margin:20px}
+.card{width:90px;height:90px;display:flex;align-items:center;justify-content:center;
+background:#ff6fa1;color:#fff;font-size:36px;border-radius:14px;cursor:pointer;
+transform-style:preserve-3d;transition:.35s}
+.card.revealed,.card.matched{background:#fff;color:#ff4d88;border:2px solid #ff4d88}
+#msg{margin:20px;font-size:20px;text-align:center;max-width:700px}
+button{padding:12px 22px;border:none;border-radius:30px;background:#ff4d88;color:#fff;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>❤️ Juego 2: Encuentra Nuestros Corazones ❤️</h1>
+<p>Encuentra todas las parejas para descubrir un mensaje especial.</p>
+<div id="board"></div>
+<div id="msg"></div>
+<button onclick="location.reload()">Jugar de nuevo</button>
+<script>
+const icons=["🌹","🌹","💖","💖","🥰","🥰","💌","💌","🌙","🌙","✨","✨","🐻","🐻","🍓","🍓"];
+const frases=[
+"Tu sonrisa es mi lugar favorito.",
+"Gracias por hacer mi vida más bonita.",
+"Cada día te amo un poquito más.",
+"Eres mi mejor casualidad.",
+"Contigo todo vale la pena.",
+"Mi hogar siempre será contigo.",
+"Eres el regalo más bonito.",
+"Te amo infinitamente ❤️"
+];
+icons.sort(()=>Math.random()-0.5);
+const board=document.getElementById("board");
+let first=null,lock=false,pairs=0;
+icons.forEach((v,i)=>{
+ let c=document.createElement("div");
+ c.className="card";
+ c.dataset.value=v;
+ c.dataset.index=i;
+ c.textContent="❤";
+ c.onclick=()=>{
+  if(lock||c.classList.contains("matched")||c===first)return;
+  c.textContent=v;c.classList.add("revealed");
+  if(!first){first=c;return;}
+  lock=true;
+  if(first.dataset.value===c.dataset.value){
+    first.classList.add("matched");c.classList.add("matched");
+    document.getElementById("msg").innerHTML+="<p>💖 "+frases[pairs]+"</p>";
+    pairs++;
+    first=null;lock=false;
+    if(pairs===8){
+      setTimeout(()=>{
+      document.getElementById("msg").innerHTML+="<h2>🎉 ¡Lo lograste mi amor! ❤️</h2><p>Así como encontraste todas las parejas, también encontraste un lugar eterno en mi corazón. Tu recompensa de la Semana 2 está desbloqueada. 🌹</p>";
+      },300);
+    }
+  }else{
+    setTimeout(()=>{
+      first.textContent="❤";c.textContent="❤";
+      first.classList.remove("revealed");
+      c.classList.remove("revealed");
+      first=null;lock=false;
+    },700);
+  }
+ };
+ board.appendChild(c);
+});
+</script>
+</body>
+</html>
