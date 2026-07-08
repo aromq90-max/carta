@@ -6,23 +6,24 @@ const main=document.getElementById("main");
 
 const music=document.getElementById("music");
 
-btn.onclick=()=>{
+btn.onclick = () => {
 
-music.play();
+    music.volume = 0.5;
 
-welcome.style.opacity="0";
+    music.play().catch(err => {
+        console.error(err);
+        alert("Error al reproducir la música.");
+    });
 
-setTimeout(()=>{
+    welcome.style.opacity = "0";
 
-welcome.style.display="none";
+    setTimeout(() => {
+        welcome.style.display = "none";
+        main.style.opacity = "1";
+    }, 1500);
 
-main.style.opacity="1";
-
-},1500);
-
-createHearts();
-
-}
+    createHearts();
+};
 
 function createHearts(){
 
