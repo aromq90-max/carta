@@ -181,18 +181,4 @@ typeWriter();
 },500);
 
 }
-const startButton = document.getElementById("start");
-const music = document.getElementById("music");
 
-startButton.addEventListener("click", () => {
-
-    // Reproducir música
-    music.volume = 0.4; // volumen (0 a 1)
-    music.play().catch(err => console.log(err));
-
-    // Ocultar bienvenida
-    document.getElementById("welcome").style.display = "none";
-
-    // Mostrar contenido principal
-    document.getElementById("main").style.display = "block";
-});
