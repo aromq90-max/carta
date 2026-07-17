@@ -12,7 +12,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 Semana 3 💗
 </title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="juego3/style.css">
 
 </head>
 
@@ -198,7 +198,7 @@ Jugar otra vez
 
 
 
-<script src="game.js"></script>
+<script src="juego3/game.js"></script>
 
 
 </body>
