@@ -3,203 +3,204 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>
-Semana 3 💗
-</title>
+    <title>💗 Semana 3 - El Laberinto de Nuestro Amor</title>
 
-<link rel="stylesheet" href="juego3/style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
+    <!-- Corazones flotando -->
+    <div id="hearts"></div>
 
-<h1>
-💗 Semana 3 💗
-<br>
-El Laberinto de Nuestro Amor
-</h1>
+    <!-- Título -->
+    <header>
 
+        <h1>💗 Semana 3 💗</h1>
 
+        <h2>El Laberinto de Nuestro Amor</h2>
 
-<div id="info">
+    </header>
 
+    <!-- Información del juego -->
 
-<div>
-🌸 Nivel:
-<span id="nivel">
-1/3
-</span>
-</div>
+    <div id="hud">
 
+        <div class="cardHUD">
 
+            🌸 Nivel
 
-<div>
-⏳ Tiempo:
-<span id="time">
-60
-</span>
-</div>
+            <span id="nivel">
+                1 / 3
+            </span>
 
+        </div>
 
-<div>
-❤️ Vida:
-<span id="life">
-3
-</span>
-</div>
+        <div class="cardHUD">
 
+            ❤️ Vida
 
-<div>
-🔑 Llave:
-<span id="hasKey">
-NO
-</span>
-</div>
+            <span id="life">
+                3
+            </span>
 
+        </div>
 
-</div>
+        <div class="cardHUD">
 
+            ⏳ Tiempo
 
+            <span id="time">
+                90
+            </span>
 
+        </div>
 
+        <div class="cardHUD">
 
-<div class="layout">
+            🔑 Llave
 
+            <span id="hasKey">
+                NO
+            </span>
 
+        </div>
 
-<div id="gameBox">
+    </div>
 
-<canvas id="game"></canvas>
+    <!-- Frase romántica -->
 
+    <div id="mensajeJuego">
 
-<p class="mobile">
+        💗 Cada paso que das me recuerda por qué elegí caminar contigo.
 
-👆 Desliza tu dedo sobre el juego para moverte
+    </div>
 
-</p>
+    <!-- Contenedor principal -->
 
+    <div id="contenedor">
 
-</div>
+        <!-- Juego -->
 
+        <div id="zonaJuego">
 
+            <canvas id="game"></canvas>
 
+            <p class="ayuda">
 
+                👆 Desliza tu dedo sobre el laberinto para mover el corazón.
 
+            </p>
 
-<div id="panelAmor">
+        </div>
 
+        <!-- Panel lateral -->
 
-<h2>
-💌 Mensaje
-</h2>
+        <aside id="panel">
 
+            <h2>💌 Nuestra misión</h2>
 
-<p id="loveText">
+            <p>
 
-"Cada camino que recorro
-me recuerda a ti 💗"
+                Hoy quiero que recorras este pequeño camino.
 
-</p>
+                <br><br>
 
+                Cada nivel representa un momento de nuestra historia.
 
+                <br><br>
 
+                Al final encontrarás una sorpresa que preparé especialmente para ti. ❤️
 
-<h2>
-🎮 Cómo jugar
-</h2>
+            </p>
 
+            <hr>
 
-<p>
+            <h2>🎮 Cómo jugar</h2>
 
+            <ul>
 
-👆 Desliza tu dedo para moverte
+                <li>👆 Desliza el dedo.</li>
 
-<br><br>
+                <li>🔑 Encuentra la llave.</li>
 
+                <li>🔒 Abre la puerta.</li>
 
-🔑 Encuentra la llave
+                <li>🌹 Llega hasta la rosa.</li>
 
-<br><br>
+                <li>✨ Completa los 3 niveles.</li>
 
+            </ul>
 
-🔒 Busca la puerta cerrada
+        </aside>
 
-<br><br>
+    </div>
 
+    <!-- Pantalla de cambio de nivel -->
 
-🚪 Abre la puerta
+    <div id="levelScreen">
 
-<br><br>
+        <div class="popup">
 
+            <h2 id="levelTitle">
 
-🌹 Encuentra la rosa final
+                🌸 Nivel Completado
 
-<br><br>
+            </h2>
 
+            <p id="levelMessage">
 
-✨ Completa los 3 niveles
+                Gracias por seguir este camino conmigo.
 
+            </p>
 
-</p>
+        </div>
 
+    </div>
 
-</div>
+    <!-- Pantalla final -->
 
+    <div id="win">
 
+        <div class="popup">
 
-</div>
+            <h1>
 
+                🌹 Lo lograste 🌹
 
+            </h1>
 
+            <p>
 
+                Llegaste al final de este pequeño viaje.
 
+                <br><br>
 
+                Así como encontraste la rosa,
 
+                también encontraste un lugar muy especial en mi corazón.
 
-<div id="win">
+                ❤️
 
+            </p>
 
-<h2>
-🌹 Encontraste mi corazón 🌹
-</h2>
+            <button onclick="location.reload()">
 
+                Jugar otra vez 💗
 
-<p>
+            </button>
 
-Después de superar los 3 caminos...
+        </div>
 
-<br><br>
+    </div>
 
-demostraste que siempre vale la pena encontrarme 💗
-
-</p>
-
-
-
-<button onclick="location.reload()">
-
-Jugar otra vez
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-<script src="juego3/game.js"></script>
-
+    <script src="game.js"></script>
 
 </body>
 
