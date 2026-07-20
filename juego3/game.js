@@ -1,44 +1,33 @@
+// ==========================================
+// 💗 SEMANA 3
+// EL LABERINTO DE NUESTRO AMOR
+// PARTE 1/3
+// ==========================================
+
+
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
-
 
 canvas.width = 600;
 canvas.height = 600;
 
 
-// ===============================
-// VARIABLES
-// ===============================
+// ==========================================
+// CONFIGURACIÓN
+// ==========================================
 
 
 let nivel = 1;
 
-let filas;
-let columnas;
+let vidas = 3;
 
-let tamaño;
+let tiempo = 90;
 
-
-let mapa=[];
-
-
-let jugador;
-
-let llave;
-
-let puerta;
-
-let rosa;
-
-
-let tiempo;
-
-let vidas=3;
+let intervaloTiempo;
 
 
 
-
-let frases=[
+let frases = [
 
 "💗 Cada paso me acerca más a ti",
 
@@ -46,65 +35,120 @@ let frases=[
 
 "💕 Eres mi lugar favorito",
 
-"✨ Gracias por formar parte de mi historia",
+"✨ Gracias por caminar conmigo",
 
-"🌹 Mi destino siempre termina contigo"
+"🌹 Mi destino siempre eres tú"
 
 ];
 
 
+let fraseActual = 0;
+
+
+
+
+// ==========================================
+// MAPAS
+// 0 = camino
+// 1 = pared
+// ==========================================
+
+
+
+const mapas = {
+
+1:[
+
+"111111111111111",
+"100000000000001",
+"101111111111101",
+"101000000001101",
+"101011111101101",
+"101010000101101",
+"101010111101101",
+"101010100001101",
+"101010101111101",
+"101000101000101",
+"101111101011101",
+"100000001010001",
+"101111111010101",
+"100000000000001",
+"111111111111111"
+
+],
+
+
+
+2:[
+
+"1111111111111111111",
+"1000000000000000001",
+"1011111111111111101",
+"1010000000000000101",
+"1010111111111110101",
+"1010100000000010101",
+"1010101111111010101",
+"1010101000001010101",
+"1010101011101010101",
+"1010001010101010001",
+"1011111010101111101",
+"1000001010100000001",
+"1111101010111111101",
+"1000001010000000001",
+"1011111011111111101",
+"1010000000000000101",
+"1010111111111110101",
+"1000000000000000001",
+"1111111111111111111"
+
+],
+
+
+
+3:[
+
+"1111111111111111111111111",
+"1000000000000000000000001",
+"1011111111111111111111101",
+"1010000000000000000000101",
+"1010111111111111111110101",
+"1010100000000000000010101",
+"1010101111111111111010101",
+"1010101000000000011010101",
+"1010101011111111011010101",
+"1010001010000001010000101",
+"1011111010111101011110101",
+"1000000010100001010000001",
+"1011111110101111010111111",
+"1000000000101000010000001",
+"1011111111101011111111101",
+"1000000000001000000000101",
+"1011111111111111111110101",
+"1010000000000000000010101",
+"1010111111111111111010101",
+"1010000000000000000010001",
+"1011111111111111111111101",
+"1000000000000000000000001",
+"1111111111111111111111111"
+
+]
+
+};
 
 
 
 
 
-// ===============================
-// INICIAR NIVEL
-// ===============================
-
-
-function iniciarNivel(){
-
-
-if(nivel==1){
-
-filas=15;
-columnas=15;
-tiempo=60;
-
-}
+// ==========================================
+// ELEMENTOS DEL NIVEL
+// ==========================================
 
 
 
-if(nivel==2){
-
-filas=21;
-columnas=21;
-tiempo=50;
-
-}
+let mapa=[];
 
 
-
-if(nivel==3){
-
-filas=29;
-columnas=29;
-tiempo=40;
-
-}
-
-
-
-tamaño=600/columnas;
-
-
-
-crearMapa();
-
-
-
-jugador={
+let jugador={
 
 x:1,
 y:1
@@ -113,24 +157,127 @@ y:1
 
 
 
+let llave={
 
-llave=buscarLugar();
+x:0,
+y:0
 
-puerta=buscarLugar();
-
-rosa=buscarLugar();
-
-
-
-puerta.abierta=false;
+};
 
 
-document.getElementById("nivel")
-.innerHTML=nivel+"/3";
+
+let puerta={
+
+x:0,
+y:0
+
+};
 
 
-document.getElementById("time")
-.innerHTML=tiempo;
+
+let rosa={
+
+x:0,
+y:0
+
+};
+
+
+
+let tieneLlave=false;
+
+
+let tamañoBloque;
+
+
+
+
+
+// ==========================================
+// CARGAR NIVEL
+// ==========================================
+
+
+
+function cargarNivel(){
+
+
+
+let mapaActual = mapas[nivel];
+
+
+
+mapa = mapaActual.map(fila => fila.split(""));
+
+
+
+tamañoBloque = canvas.width / mapa.length;
+
+
+
+tieneLlave=false;
+
+
+
+jugador.x=1;
+
+jugador.y=1;
+
+
+
+if(nivel===1){
+
+
+llave={x:5,y:1};
+
+puerta={x:13,y:13};
+
+rosa={x:13,y:1};
+
+
+}
+
+
+
+if(nivel===2){
+
+
+llave={x:3,y:17};
+
+puerta={x:17,y:1};
+
+rosa={x:17,y:17};
+
+
+}
+
+
+
+if(nivel===3){
+
+
+llave={x:21,y:21};
+
+puerta={x:1,y:21};
+
+rosa={x:23,y:1};
+
+
+}
+
+
+
+
+document.getElementById("nivel").innerHTML =
+nivel+" / 3";
+
+
+document.getElementById("hasKey").innerHTML =
+"NO";
+
+
+
+iniciarTiempo();
 
 
 
@@ -144,186 +291,35 @@ dibujar();
 
 
 
-
-
-// ===============================
-// CREAR LABERINTO
-// ===============================
-
-
-function crearMapa(){
-
-
-mapa=[];
-
-
-for(let y=0;y<filas;y++){
-
-
-mapa[y]=[];
-
-
-for(let x=0;x<columnas;x++){
-
-
-mapa[y][x]=1;
-
-
-}
-
-
-}
-
-
-
-crearCamino(1,1);
-
-
-}
-
-
-
-
-
-function crearCamino(x,y){
-
-
-mapa[y][x]=0;
-
-
-
-let direcciones=[
-
-[2,0],
-[-2,0],
-[0,2],
-[0,-2]
-
-];
-
-
-
-direcciones.sort(()=>Math.random()-0.5);
-
-
-
-for(let d of direcciones){
-
-
-let nx=x+d[0];
-
-let ny=y+d[1];
-
-
-
-if(
-
-nx>0 &&
-ny>0 &&
-nx<columnas-1 &&
-ny<filas-1 &&
-mapa[ny][nx]==1
-
-){
-
-
-mapa[y+d[1]/2][x+d[0]/2]=0;
-
-
-crearCamino(nx,ny);
-
-
-}
-
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-function buscarLugar(){
-
-
-let p;
-
-
-
-do{
-
-
-p={
-
-
-x:Math.floor(Math.random()*columnas),
-
-y:Math.floor(Math.random()*filas)
-
-
-};
-
-
-}
-
-while(
-
-mapa[p.y][p.x]!=0 ||
-
-(p.x==1&&p.y==1)
-
-);
-
-
-
-return p;
-
-
-}
-
-
-
-
-
-
-
-
-
-
-// ===============================
-// DIBUJAR
-// ===============================
+// ==========================================
+// DIBUJAR JUEGO
+// ==========================================
 
 
 function dibujar(){
 
 
-ctx.clearRect(0,0,600,600);
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
 
 
 
-
-for(let y=0;y<filas;y++){
-
-
-for(let x=0;x<columnas;x++){
+for(let y=0;y<mapa.length;y++){
 
 
-
-if(mapa[y][x]==1){
+for(let x=0;x<mapa[y].length;x++){
 
 
 
-ctx.fillStyle="#ff4fa3";
+if(mapa[y][x]=="1"){
 
+
+ctx.fillStyle="#ff69b4";
 
 
 ctx.shadowColor="#ff1493";
@@ -334,13 +330,13 @@ ctx.shadowBlur=8;
 
 ctx.fillRect(
 
-x*tamaño,
+x*tamañoBloque,
 
-y*tamaño,
+y*tamañoBloque,
 
-tamaño,
+tamañoBloque,
 
-tamaño
+tamañoBloque
 
 );
 
@@ -351,23 +347,70 @@ ctx.shadowBlur=0;
 
 }
 
-
 else{
 
 
-ctx.fillStyle="#ffd6eb";
+ctx.fillStyle="#ffe4f2";
 
 
 ctx.fillRect(
 
-x*tamaño,
+x*tamañoBloque,
 
-y*tamaño,
+y*tamañoBloque,
 
-tamaño,
+tamañoBloque,
 
-tamaño
+tamañoBloque
 
+);
+
+
+}
+
+
+
+}
+
+
+
+}
+
+
+// llave
+
+dibujarEmoji("🔑",llave.x,llave.y);
+
+
+// puerta
+
+dibujarEmoji(
+
+tieneLlave?"🚪✨":"🔒",
+
+puerta.x,
+
+puerta.y
+
+);
+
+
+
+// rosa
+
+dibujarEmoji(
+"🌹",
+rosa.x,
+rosa.y
+);
+
+
+// jugador
+
+dibujarEmoji(
+"💗",
+jugador.x,
+jugador.y
 );
 
 
@@ -377,52 +420,12 @@ tamaño
 
 
 
-}
+
+function dibujarEmoji(icono,x,y){
 
 
-}
-
-
-
-
-
-
-emoji("🔑",llave);
-
-
-
-emoji(
-
-puerta.abierta?
-
-"🚪✨":
-
-"🔒",
-
-puerta
-
-);
-
-
-
-emoji("🌹",rosa);
-
-
-
-emoji("💗",jugador);
-
-
-
-}
-
-
-
-
-
-function emoji(icon,obj){
-
-
-ctx.font=(tamaño*.8)+"px Arial";
+ctx.font =
+(tamañoBloque*0.8)+"px Arial";
 
 
 ctx.textAlign="center";
@@ -432,92 +435,88 @@ ctx.textBaseline="middle";
 
 ctx.fillText(
 
-icon,
+icono,
 
-obj.x*tamaño+tamaño/2,
+x*tamañoBloque+tamañoBloque/2,
 
-obj.y*tamaño+tamaño/2
+y*tamañoBloque+tamañoBloque/2
 
 );
 
 
 }
 
+// ==========================================
+// 💗 SEMANA 3
+// EL LABERINTO DE NUESTRO AMOR
+// PARTE 2/3
+// ==========================================
 
 
 
+// ==========================================
+// MOVIMIENTO DEL JUGADOR
+// ==========================================
+
+
+function mover(dx,dy){
+
+
+let nuevoX = jugador.x + dx;
+
+let nuevoY = jugador.y + dy;
 
 
 
-
-// ===============================
-// MOVIMIENTO
-// ===============================
-
-
-function mover(direccion){
-
-
-let x=jugador.x;
-
-let y=jugador.y;
-
-
-
-if(direccion=="up")y--;
-
-if(direccion=="down")y++;
-
-if(direccion=="left")x--;
-
-if(direccion=="right")x++;
-
-
-
-
+// verificar límites
 
 if(
-
-x>=0&&
-y>=0&&
-x<columnas&&
-y<filas&&
-mapa[y][x]==0
-
+nuevoX < 0 ||
+nuevoY < 0 ||
+nuevoY >= mapa.length ||
+nuevoX >= mapa[0].length
 ){
 
-
-jugador.x=x;
-
-jugador.y=y;
-
-
-revisar();
-
-
-
-cambiarMensaje();
-
+return;
 
 }
 
+
+
+// verificar pared
+
+if(mapa[nuevoY][nuevoX] === "1"){
+
+return;
+
+}
+
+
+
+
+jugador.x = nuevoX;
+
+jugador.y = nuevoY;
+
+
+
+comprobarObjetos();
 
 
 dibujar();
 
 
-
 }
 
 
 
 
+// ==========================================
+// OBJETOS DEL MAPA
+// ==========================================
 
 
-
-
-
-function revisar(){
+function comprobarObjetos(){
 
 
 
@@ -526,20 +525,14 @@ function revisar(){
 
 if(
 
-jugador.x==llave.x&&
-jugador.y==llave.y
+jugador.x === llave.x &&
+
+jugador.y === llave.y
 
 ){
 
 
-llave.x=-10;
-
-
-llave.y=-10;
-
-
-
-puerta.abierta=true;
+tieneLlave=true;
 
 
 
@@ -547,8 +540,13 @@ document.getElementById("hasKey")
 .innerHTML="SI 🔑";
 
 
-}
 
+mostrarMensaje(
+"🔑 Encontraste la llave de mi corazón 💗"
+);
+
+
+}
 
 
 
@@ -559,19 +557,35 @@ document.getElementById("hasKey")
 
 if(
 
-puerta.abierta&&
+jugador.x === puerta.x &&
 
-jugador.x==puerta.x&&
-
-jugador.y==puerta.y
+jugador.y === puerta.y
 
 ){
 
 
 
-puerta.x=-10;
+if(tieneLlave){
 
-puerta.y=-10;
+
+mostrarMensaje(
+"🚪 La puerta se abrió... sigue buscando 🌹"
+);
+
+
+
+}
+
+
+else{
+
+
+mostrarMensaje(
+"🔒 Necesitas encontrar la llave primero"
+);
+
+
+}
 
 
 }
@@ -579,56 +593,45 @@ puerta.y=-10;
 
 
 
-// ROSA
+
+
+// ROSA FINAL
 
 
 if(
 
-jugador.x==rosa.x&&
+jugador.x === rosa.x &&
 
-jugador.y==rosa.y&&
-
-puerta.abierta
+jugador.y === rosa.y
 
 ){
 
 
-ganarNivel();
+
+if(tieneLlave){
+
+
+
+terminarNivel();
 
 
 }
 
 
+else{
+
+
+mostrarMensaje(
+"🌹 La rosa te espera... pero falta la llave"
+);
+
 
 }
 
 
+}
 
 
-
-
-
-
-
-function cambiarMensaje(){
-
-
-let r=
-
-frases[
-
-Math.floor(
-
-Math.random()*frases.length
-
-)
-
-];
-
-
-
-document.getElementById("loveText")
-.innerHTML=r;
 
 
 }
@@ -639,30 +642,112 @@ document.getElementById("loveText")
 
 
 
+// ==========================================
+// MENSAJES ROMÁNTICOS
+// ==========================================
 
 
-// ===============================
-// TOUCH CELULAR
-// ===============================
+function mostrarMensaje(texto){
 
 
-let inicioX;
 
-let inicioY;
+let mensaje =
+document.getElementById("mensajeJuego");
+
+
+
+if(mensaje){
+
+
+mensaje.innerHTML = texto;
+
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+function cambiarFrase(){
+
+
+
+fraseActual++;
+
+
+
+if(fraseActual >= frases.length){
+
+fraseActual=0;
+
+}
+
+
+
+mostrarMensaje(
+frases[fraseActual]
+);
+
+
+
+}
+
+
+
+
+
+setInterval(()=>{
+
+
+cambiarFrase();
+
+
+},5000);
+
+
+
+
+
+
+
+
+
+// ==========================================
+// CONTROL TOUCH CELULAR
+// ==========================================
+
+
+
+let inicioX=0;
+
+let inicioY=0;
+
 
 
 
 canvas.addEventListener(
 "touchstart",
-e=>{
+function(e){
 
 
-inicioX=e.touches[0].clientX;
 
-inicioY=e.touches[0].clientY;
+inicioX =
+e.touches[0].clientX;
+
+
+inicioY =
+e.touches[0].clientY;
+
 
 
 });
+
 
 
 
@@ -670,43 +755,98 @@ inicioY=e.touches[0].clientY;
 
 canvas.addEventListener(
 "touchend",
-e=>{
-
-
-let dx=e.changedTouches[0].clientX-inicioX;
-
-let dy=e.changedTouches[0].clientY-inicioY;
+function(e){
 
 
 
-if(Math.abs(dx)>Math.abs(dy)){
+let finalX =
+e.changedTouches[0].clientX;
 
 
-if(dx>30)
+let finalY =
+e.changedTouches[0].clientY;
 
-mover("right");
 
-else
 
-mover("left");
+
+let diferenciaX =
+finalX - inicioX;
+
+
+
+let diferenciaY =
+finalY - inicioY;
+
+
+
+
+
+
+// movimiento horizontal
+
+
+if(
+Math.abs(diferenciaX) >
+Math.abs(diferenciaY)
+
+){
+
+
+
+if(diferenciaX > 30){
+
+
+mover(1,0);
 
 
 }
+
+
+else if(diferenciaX < -30){
+
+
+mover(-1,0);
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+// movimiento vertical
+
 
 else{
 
 
-if(dy>30)
 
-mover("down");
+if(diferenciaY > 30){
 
 
-else
-
-mover("up");
+mover(0,1);
 
 
 }
+
+
+else if(diferenciaY < -30){
+
+
+mover(0,-1);
+
+
+}
+
+
+}
+
+
 
 
 
@@ -719,67 +859,103 @@ mover("up");
 
 
 
+// ==========================================
+// TECLADO PC
+// ==========================================
 
 
-// ===============================
-// NIVEL
-// ===============================
-
-
-function ganarNivel(){
-
-
-
-if(nivel<3){
+document.addEventListener(
+"keydown",
+function(e){
 
 
 
-alert(
-
-"✨ Nivel "+nivel+" completado 💗"
-
-);
+if(e.key==="ArrowUp"){
 
 
-
-nivel++;
-
-
-
-iniciarNivel();
-
-
-}
-
-else{
-
-
-document.getElementById("win")
-.style.display="block";
+mover(0,-1);
 
 
 }
 
 
 
+if(e.key==="ArrowDown"){
+
+
+mover(0,1);
+
+
+}
+
+
+
+if(e.key==="ArrowLeft"){
+
+
+mover(-1,0);
+
+
+}
+
+
+
+if(e.key==="ArrowRight"){
+
+
+mover(1,0);
+
+
 }
 
 
 
 
+});
 
 
 
 
-// ===============================
+
+
+
+// ==========================================
 // TIEMPO
-// ===============================
+// ==========================================
 
 
-setInterval(()=>{
+function iniciarTiempo(){
 
 
-tiempo--;
+
+clearInterval(intervaloTiempo);
+
+
+
+if(nivel===1){
+
+tiempo=90;
+
+}
+
+
+
+if(nivel===2){
+
+tiempo=120;
+
+}
+
+
+
+if(nivel===3){
+
+tiempo=180;
+
+}
+
+
+
 
 
 document.getElementById("time")
@@ -787,14 +963,37 @@ document.getElementById("time")
 
 
 
+
+intervaloTiempo=setInterval(()=>{
+
+
+tiempo--;
+
+
+
+document.getElementById("time")
+.innerHTML=tiempo;
+
+
+
+
+
 if(tiempo<=0){
+
 
 
 vidas--;
 
 
+
 document.getElementById("life")
 .innerHTML=vidas;
+
+
+
+mostrarMensaje(
+"💔 El tiempo terminó, inténtalo nuevamente"
+);
 
 
 
@@ -804,20 +1003,29 @@ jugador.y=1;
 
 
 
-tiempo=60;
+iniciarTiempo();
+
+
+
+dibujar();
+
 
 
 
 if(vidas<=0){
 
 
-alert("Perdiste 💔");
+alert(
+"El camino fue difícil, pero el amor siempre encuentra una forma 💗"
+);
+
 
 
 location.reload();
 
 
 }
+
 
 
 }
@@ -828,38 +1036,213 @@ location.reload();
 
 
 
+}
 
 
 
 
 
 
-// CORAZONES
+// ==========================================
+// FINAL DE NIVEL
+// ==========================================
 
 
-for(let i=0;i<30;i++){
+function terminarNivel(){
 
 
-let h=document.createElement("div");
+
+clearInterval(intervaloTiempo);
 
 
-h.className="heart";
 
 
-h.innerHTML="💗";
+if(nivel < 3){
 
 
-h.style.left=
 
+document.getElementById("levelScreen")
+.style.display="flex";
+
+
+
+document.getElementById("levelTitle")
+.innerHTML=
+"✨ Nivel "+nivel+" completado ✨";
+
+
+
+document.getElementById("levelMessage")
+.innerHTML=
+"Cada camino superado nos acerca más 💗";
+
+
+
+
+
+setTimeout(()=>{
+
+
+document.getElementById("levelScreen")
+.style.display="none";
+
+
+
+nivel++;
+
+
+
+cargarNivel();
+
+
+
+},3000);
+
+
+
+
+
+}
+
+
+
+else{
+
+
+
+mostrarFinal();
+
+
+
+}
+
+
+
+
+}
+
+// ==========================================
+// 💗 SEMANA 3
+// EL LABERINTO DE NUESTRO AMOR
+// PARTE 3/3
+// ==========================================
+
+
+// ==========================================
+// PANTALLA FINAL
+// ==========================================
+
+
+function mostrarFinal(){
+
+
+document.getElementById("win")
+.style.display="flex";
+
+
+document.getElementById("mensajeJuego")
+.innerHTML=
+
+"🌹 Encontraste el camino hasta mi corazón 💗";
+
+
+
+}
+
+
+
+
+
+
+// ==========================================
+// CORAZONES FLOTANDO
+// ==========================================
+
+
+function crearCorazones(){
+
+
+
+let contenedor =
+document.getElementById("hearts");
+
+
+
+if(!contenedor){
+
+return;
+
+}
+
+
+
+
+for(let i=0;i<35;i++){
+
+
+
+let corazon =
+document.createElement("div");
+
+
+
+corazon.className="heart";
+
+
+corazon.innerHTML="💗";
+
+
+
+corazon.style.left =
 Math.random()*100+"%";
 
 
-h.style.animationDuration=
 
-(5+Math.random()*8)+"s";
+corazon.style.animationDuration =
+
+(5 + Math.random()*8)+"s";
 
 
-document.body.appendChild(h);
+
+corazon.style.animationDelay =
+
+Math.random()*5+"s";
+
+
+
+contenedor.appendChild(corazon);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+// ==========================================
+// EFECTO AL TOMAR LLAVE
+// ==========================================
+
+
+function efectoLlave(){
+
+
+canvas.style.transform="scale(1.03)";
+
+
+setTimeout(()=>{
+
+
+canvas.style.transform="scale(1)";
+
+
+},300);
+
 
 
 }
@@ -870,4 +1253,57 @@ document.body.appendChild(h);
 
 
 
-iniciarNivel();
+
+// ==========================================
+// BLOQUEAR ZOOM CELULAR
+// ==========================================
+
+
+document.addEventListener(
+"gesturestart",
+function(e){
+
+e.preventDefault();
+
+});
+
+
+
+
+
+
+
+// ==========================================
+// INICIO DEL JUEGO
+// ==========================================
+
+
+crearCorazones();
+
+
+cargarNivel();
+
+
+
+
+// ==========================================
+// EVITAR SCROLL AL JUGAR
+// ==========================================
+
+
+document.body.addEventListener(
+"touchmove",
+function(e){
+
+
+if(e.target===canvas){
+
+e.preventDefault();
+
+}
+
+
+},
+{
+passive:false
+});
