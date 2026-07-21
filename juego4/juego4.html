@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UMBRELLA_CORP // MAINFRAME_ACCESS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Fira+Code:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_final.css">
+</head>
+<body>
+
+    <div class="crt-overlay"></div>
+
+    <!-- CONTROL DE AUDIO -->
+    <div class="audio-control" id="audioToggle">
+        <span class="audio-icon">📻</span>
+        <span class="audio-text">AUDIO: ON</span>
+    </div>
+
+    <!-- POP-UP AYUDA / CORREO DE TU AMOR (TEMPORIZADOR 25s) -->
+    <div id="mail-popup-overlay" class="popup-overlay">
+        <div class="popup-box mail-theme">
+            <div class="popup-header mail-hdr">
+                <span id="mail-hdr-title">📩 NUEVO CORREO RECIBIDO</span>
+                <span class="popup-close-icon" id="btn-close-mail">✖</span>
+            </div>
+            <div class="popup-body flex-col">
+                <div class="mail-card">
+                    <div class="mail-meta">
+                        <strong>De:</strong> Tu Amor 💌<br>
+                        <strong>Asunto:</strong> <span id="mail-subject">Pista del Registro</span>
+                    </div>
+                    <hr class="mail-divider">
+                    <div class="mail-content">
+                        <p id="mail-intro-text">¡Hola mi vida! Vi que te trabaste un poquito, aquí te mando la respuesta...</p>
+                        <div class="mail-answer-box" id="mail-answer-text">
+                            <!-- Contenido dinámico -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button id="btn-mail-ok" class="btn-popup btn-mail">
+                    ¡GRACIAS MI AMOR! 💖
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POP-UP 1: ERROR FASE 1 -->
+    <div id="error-popup-overlay" class="popup-overlay">
+        <div class="popup-box">
+            <div class="popup-header">
+                <span>⚠️ SYSTEM_CRITICAL_ERROR.EXE</span>
+            </div>
+            <div class="popup-body">
+                <div class="popup-icon-warning">☣️</div>
+                <div class="popup-content">
+                    <h3 class="popup-title">¡ERROR INESPERADO DEL SISTEMA!</h3>
+                    <p class="popup-msg">Intentando formatear la memoria tras la sobrecarga del reactor...</p>
+
+                    <div class="progress-box">
+                        <div class="progress-fill" id="pop-progress"></div>
+                    </div>
+
+                    <div class="error-console" id="pop-console">
+                        &gt; [SYS_FAIL]: Memory dump in progress...<br>
+                        &gt; [PURGE_ERR]: Sector 0x9948 protected.<br>
+                    </div>
+
+                    <div id="love-file-alert" class="love-alert hidden">
+                        <span class="love-icon">💖</span>
+                        <div class="love-text">
+                            <span class="love-title">⚠️ [ERROR CRÍTICO DEL SISTEMA] ⚠️</span>
+                            No se puede eliminar el archivo:
+                            <code>"MI_AMOR_POR_TI.DAT"</code>
+                            <span class="love-subtitle">El archivo está protegido permanentemente por el corazón del sistema.</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button id="btn-popup-continue" class="btn-popup" disabled>
+                    FORZAR CONTINUACIÓN ➔
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POP-UP 2: ERROR AL FINALIZAR FASE 2 -->
+    <div id="fase2-popup-overlay" class="popup-overlay">
+        <div class="popup-box error-theme">
+            <div class="popup-header red-hdr">
+                <span>🚨 PURGE_PROTOCOL // MEMORY_FORMAT</span>
+            </div>
+            <div class="popup-body flex-col">
+                <h3 class="popup-title">ELIMINANDO ARCHIVOS DEL SISTEMA...</h3>
+
+                <div class="purge-grid">
+                    <div class="purge-img-box"><img src="https://github.com/aromq90-max/carta/blob/main/1.jpeg?raw=true" alt="img1"><span class="img-status">DELETING...</span></div>
+                    <div class="purge-img-box"><img src="https://github.com/aromq90-max/carta/blob/main/10.jpeg?raw=true" alt="img2"><span class="img-status">DELETING...</span></div>
+                    <div class="purge-img-box"><img src="https://github.com/aromq90-max/carta/blob/main/11.jpeg?raw=true" alt="img3"><span class="img-status">DELETING...</span></div>
+                    <div class="purge-img-box"><img src="https://github.com/aromq90-max/carta/blob/main/12.jpeg?raw=true" alt="img4"><span class="img-status">DELETING...</span></div>
+                </div>
+
+                <div class="progress-box">
+                    <div class="progress-fill red-fill" id="fase2-progress"></div>
+                </div>
+
+                <div id="fase2-console" class="error-console">
+                    &gt; [INIT]: Purging memory sectors...<br>
+                </div>
+
+                <div id="karina-block-alert" class="love-alert block-alert hidden">
+                    <span class="love-icon">🔒</span>
+                    <div class="love-text">
+                        <span class="love-title" style="color: #ff3333;">❌ PROCESO INTERRUMPIDO</span>
+                        <code class="block-code">ARCHIVO BLOQUEADO POR AROM 💖</code>
+                        <span class="love-subtitle">Los recuerdos de Karina no pueden ser borrados. Acceso a la Matriz Concedido.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <button id="btn-fase2-continue" class="btn-popup" disabled>
+                    ACCEDER A NÚCLEO MATRIZ ➔
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POP-UP 3A: 6 IMÁGENES SALVADAS (4 SEGUNDOS) -->
+    <div id="saved-files-popup-overlay" class="popup-overlay">
+        <div class="popup-box saved-theme">
+            <div class="popup-header green-hdr">
+                <span>🟢 RESTORE_SUCCESS // MEMORY_RECOVERY</span>
+            </div>
+            <div class="popup-body flex-col text-center">
+                <h3 class="popup-title-success">🎉 ¡ARCHIVOS SALVADOS! 🎉</h3>
+                <p class="popup-msg">Restaurando imágenes resguardadas en el núcleo...</p>
+
+                <div class="saved-grid-6">
+                    <div class="saved-card"><img src="https://github.com/aromq90-max/carta/blob/main/1.jpeg?raw=true"><span class="saved-tag">SAVED ✓</span></div>
+                    <div class="saved-card"><img src="https://github.com/aromq90-max/carta/blob/main/10.jpeg?raw=true"><span class="saved-tag">SAVED ✓</span></div>
+                    <div class="saved-card"><img src="https://github.com/aromq90-max/carta/blob/main/11.jpeg?raw=true"><span class="saved-tag">SAVED ✓</span></div>
+                    <div class="saved-card"><img src="https://github.com/aromq90-max/carta/blob/main/12.jpeg?raw=true"><span class="saved-tag">SAVED ✓</span></div>
+                    <div class="saved-card"><img src="https://github.com/aromq90-max/carta/blob/main/5.jpeg?raw=true"><span class="saved-tag">SAVED ✓</span></div>
+                    <div class="saved-card"><img src="https://github.com/aromq90-max/carta/blob/main/6.jpeg?raw=true"><span class="saved-tag">SAVED ✓</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- POP-UP 3B: CORREO FINAL CON VIDEO ENCRIPTADO (Arom.mp4) -->
+    <div id="final-mail-popup-overlay" class="popup-overlay">
+        <div class="popup-box mail-theme final-mail-box">
+            <div class="popup-header mail-hdr">
+                <span>📩 TIENES UN NUEVO MENSAJE</span>
+            </div>
+            <div class="popup-body flex-col">
+                <div class="mail-card">
+                    <div class="mail-meta">
+                        <strong>De:</strong> Tu Amor Eterno 💖<br>
+                        <strong>Asunto:</strong> ¡Feliz Cumpleaños Mi Niña Hermosa! 🎂
+                    </div>
+                    <hr class="mail-divider">
+                    <div class="mail-content final-letter">
+                        <p>¡Mi vida hermosa! Si estás leyendo esto es porque lograste romper todos los códigos y recuperar nuestros recuerdos.</p>
+                        <p>No importa qué tan difícil se ponga el camino o qué rompecabezas nos ponga la vida enfrente, siempre voy a estar aquí para ayudarte y caminar a tu lado.</p>
+
+                        <div class="final-highlight">
+                            "Eres y siempre serás lo más bonito que me ha pasado. ¡Te amo con todo mi corazón!"
+                        </div>
+
+                        <!-- SECCIÓN DEL VIDEO ENCRIPTADO -->
+                        <div class="video-encrypted-box">
+                            <span class="video-tag">🔐 ARCHIVO MULTIMEDIA PROTEGIDO</span>
+
+                            <button id="btn-unlock-video" class="btn-pro btn-encrypt">
+                                🔓 VER ARCHIVO ENCRIPTADO
+                            </button>
+
+                            <div id="video-container" class="video-container hidden">
+                                <video id="my-personal-video" controls width="100%">
+                                    <source src="Arom.mp4" type="video/mp4">
+                                    Tu navegador no soporta reproducción de video.
+                                </video>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="popup-footer center-btn">
+                <button class="btn-pro" onclick="location.reload()">REINICIAR SISTEMA 🔄</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TERMINAL PRINCIPAL -->
+    <div class="terminal-wrapper">
+        <div class="terminal-container">
+
+            <header class="terminal-header">
+                <div class="logo-umbrella">☣️ NEST_LABS // VOLTAGE_GRID ☣️</div>
+                <div class="status-bar">
+                    <span class="status-indicator warning"></span>
+                    <span class="title-terminal">STATION: REACTOR_B</span>
+                </div>
+            </header>
+
+            <div class="phase-progress">
+                <div class="step active" id="step1">01. OVERLOAD_GRID</div>
+                <div class="step" id="step2">02. CIPHER_KEY</div>
+                <div class="step" id="step3">03. CORE_MATRIX</div>
+            </div>
+
+            <main class="terminal-body">
+
+                <!-- FASE 1: PUZZLE MATEMÁTICO -->
+                <section id="pista1" class="fase-juego activa">
+                    <div class="badge-fase hazard">⚠️ REACTOR DESESTABILIZADO</div>
+                    <h2>CALIBRACIÓN COMPLEJA DE VOLTAJE</h2>
+                    <p class="instrucciones">
+                        Para liberar el sistema debes alcanzar <strong>exactamente 100 V</strong>.
+                    </p>
+
+                    <div class="re-puzzle-container">
+                        <div class="reactor-display">
+                            <div class="display-col">
+                                <span class="label-display">VOLTAJE ACTUAL</span>
+                                <span id="power-value" class="power-text">0 V</span>
+                            </div>
+                            <div class="display-col">
+                                <span class="label-display">OBJETIVO</span>
+                                <span class="target-text">100 V</span>
+                            </div>
+                        </div>
+
+                        <div class="meter-bar-bg">
+                            <div id="power-bar" class="meter-bar-fill" style="width: 0%;"></div>
+                        </div>
+
+                        <div class="section-title">&gt; FUSIBLES DE GENERACIÓN</div>
+                        <div class="switches-grid">
+                            <button class="btn-fuse" data-val="35">FUSIBLE A (+35V)</button>
+                            <button class="btn-fuse" data-val="18">FUSIBLE B (+18V)</button>
+                            <button class="btn-fuse" data-val="-12">FUSIBLE C (-12V)</button>
+                            <button class="btn-fuse" data-val="27">FUSIBLE D (+27V)</button>
+                        </div>
+
+                        <div class="section-title">&gt; MODULADORES DE CAMPO</div>
+                        <div class="switches-grid mod-grid">
+                            <button class="btn-mod" data-type="mult" data-val="2">AMPLIFICADOR (x2)</button>
+                            <button class="btn-mod" data-type="sub" data-val="16">DISIPADOR (-16V)</button>
+                            <button class="btn-mod" data-type="mult" data-val="3">TRIPLICADOR (x3)</button>
+                        </div>
+
+                        <div id="circuit-status" class="circuit-status-msg">SE REQUIERE SOBRECARGA EXACTA A 100V...</div>
+                    </div>
+
+                    <button id="btn-fase1" class="btn-pro hazard-btn" disabled>
+                        <span>[ INYECTAR SOBRECARGA ]</span>
+                    </button>
+                </section>
+
+                <!-- FASE 2: TRIPLE RETO -->
+                <section id="pista2" class="fase-juego">
+                    <div class="badge-fase hazard">DECRYPTION REQUIRED // STEP <span id="substep-num">1</span> OF 3</div>
+
+                    <div class="re-keypad-display">
+                        <span class="keypad-label">&gt; INPUT_BUFFER:</span>
+                        <div id="re-input-screen" class="input-screen">_</div>
+                    </div>
+
+                    <!-- SUB-RETO 1 -->
+                    <div id="subreto-1" class="subreto-container">
+                        <h2>RETO 1/3: REGISTRO HISTÓRICO</h2>
+                        <p class="instrucciones">
+                            <em>"La luz empezó a brillar en mi oscuridad... ¿Qué día fue?"</em>
+                        </p>
+                    </div>
+
+                    <!-- SUB-RETO 2 -->
+                    <div id="subreto-2" class="subreto-container hidden">
+                        <h2>RETO 2/3: MENSAJE CRIPTOGRÁFICO AVANZADO</h2>
+                        <p class="instrucciones">
+                            Extrae minuciosamente los caracteres del registro dañado para revelar el código clave:
+                        </p>
+
+                        <div class="historia-box">
+                            &gt; "En aqu<span class="hl">t</span>el int<span class="hl">e</span>rminable inst<span class="hl">a</span>nte en que tus ojos <span class="hl">m</span>iraron los mí<span class="hl">o</span>s, el tie<span class="hl">m</span>po se detuvo en <span class="hl">i</span>ntegro. Es sim<span class="hl">p</span>lemente asomb<span class="hl">r</span>oso el modo <span class="hl">i</span>ncondicional e<span class="hl">n</span> que trasformaste <span class="hl">c</span>ada p<span class="hl">e</span>nsamiento. Ere<span class="hl">s</span> una m<span class="hl">a</span>ravillosa persona, <span class="hl">h</span>oy y si<span class="hl">e</span>mpre la más <span class="hl">r</span>adiante de<span class="hl">m</span>ostración de am<span class="hl">o</span>r y <span class="hl">s</span>onrisas <span class="hl">a</span>bsolutas."
+                        </div>
+                    </div>
+
+                    <!-- SUB-RETO 3 -->
+                    <div id="subreto-3" class="subreto-container hidden">
+                        <h2>RETO 3/3: REORDENAMIENTO CORTOCIRCUITADO</h2>
+                        <p class="instrucciones">
+                            Las letras y palabras han sufrido un corto circuito. Descifra y ordena la frase utilizando el teclado:
+                        </p>
+
+                        <div class="anagrama-box">
+                            <code>[ "I M", "A I Ñ N", "O R M A E S H", "E L I F Z", "O A S Ñ P U L C E M" ]</code>
+                        </div>
+                    </div>
+
+                    <!-- TECLADO VIRTUAL ESTILO CONSOLA -->
+                    <div class="re-virtual-keypad">
+                        <div class="keypad-row">
+                            <button class="key-btn" data-key="1">1</button>
+                            <button class="key-btn" data-key="2">2</button>
+                            <button class="key-btn" data-key="3">3</button>
+                            <button class="key-btn" data-key="4">4</button>
+                            <button class="key-btn" data-key="5">5</button>
+                            <button class="key-btn" data-key="6">6</button>
+                            <button class="key-btn" data-key="7">7</button>
+                            <button class="key-btn" data-key="8">8</button>
+                            <button class="key-btn" data-key="9">9</button>
+                            <button class="key-btn" data-key="0">0</button>
+                        </div>
+                        <div class="keypad-row">
+                            <button class="key-btn" data-key="Q">Q</button>
+                            <button class="key-btn" data-key="W">W</button>
+                            <button class="key-btn" data-key="E">E</button>
+                            <button class="key-btn" data-key="R">R</button>
+                            <button class="key-btn" data-key="T">T</button>
+                            <button class="key-btn" data-key="Y">Y</button>
+                            <button class="key-btn" data-key="U">U</button>
+                            <button class="key-btn" data-key="I">I</button>
+                            <button class="key-btn" data-key="O">O</button>
+                            <button class="key-btn" data-key="P">P</button>
+                        </div>
+                        <div class="keypad-row">
+                            <button class="key-btn" data-key="A">A</button>
+                            <button class="key-btn" data-key="S">S</button>
+                            <button class="key-btn" data-key="D">D</button>
+                            <button class="key-btn" data-key="F">F</button>
+                            <button class="key-btn" data-key="G">G</button>
+                            <button class="key-btn" data-key="H">H</button>
+                            <button class="key-btn" data-key="J">J</button>
+                            <button class="key-btn" data-key="K">K</button>
+                            <button class="key-btn" data-key="L">L</button>
+                            <button class="key-btn" data-key="Ñ">Ñ</button>
+                        </div>
+                        <div class="keypad-row">
+                            <button class="key-btn" data-key="Z">Z</button>
+                            <button class="key-btn" data-key="X">X</button>
+                            <button class="key-btn" data-key="C">C</button>
+                            <button class="key-btn" data-key="V">V</button>
+                            <button class="key-btn" data-key="B">B</button>
+                            <button class="key-btn" data-key="N">N</button>
+                            <button class="key-btn" data-key="M">M</button>
+                            <button class="key-btn" data-key="-">-</button>
+                            <button class="key-btn" data-key=" ">ESPACIO</button>
+                        </div>
+                        <div class="keypad-row actions">
+                            <button id="key-del" class="key-btn action-del">⌫ BORRAR</button>
+                            <button id="key-enter" class="key-btn action-enter">ENTER ↵</button>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- FASE 3: PUZZLE DESLIZANTE COMPLEJO 4x4 -->
+                <section id="pista3" class="fase-juego">
+                    <div class="badge-fase hazard">CORE MATRIX // HIGH COMPLEXITY</div>
+                    <h2>RECONSTRUCCIÓN MATRIZ 4x4</h2>
+                    <p class="instrucciones" id="instruccion-p3">Sincroniza las 15 piezas desordenadas deslizando las fichas hacia la casilla vacía hasta armar los números en orden secuencial (1-15).</p>
+
+                    <div class="puzzle-stage">
+                        <div id="puzzle-board-4x4"></div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- MÚSICA DE FONDO -->
+    <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112185.mp3"></audio>
+
+    <script src="script_final.js"></script>
+</body>
+</html>
