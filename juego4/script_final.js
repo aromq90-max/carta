@@ -272,9 +272,6 @@ function initPista3() {
     const board = document.getElementById("puzzle-board-4x4");
     const savedPopup = document.getElementById("saved-files-popup-overlay");
     const finalMailPopup = document.getElementById("final-mail-popup-overlay");
-    const btnUnlockVideo = document.getElementById("btn-unlock-video");
-    const videoContainer = document.getElementById("video-container");
-    const personalVideo = document.getElementById("my-personal-video");
 
     const solvedState = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ""];
     let tiles = [...solvedState];
@@ -342,7 +339,7 @@ function initPista3() {
                 setTimeout(() => {
                     savedPopup.classList.remove("active");
 
-                    // 3. Despliega el Pop-up de Correo con "Ver Archivo Encriptado"
+                    // 3. Despliega el Pop-up de Correo Final
                     setTimeout(() => {
                         finalMailPopup.classList.add("active");
                     }, 400);
@@ -350,17 +347,6 @@ function initPista3() {
                 }, 4000);
             }, 300);
         }
-    }
-
-    // Evento para revelar y reproducir tu video al presionar el botón
-    if (btnUnlockVideo) {
-        btnUnlockVideo.addEventListener("click", () => {
-            btnUnlockVideo.classList.add("hidden");
-            videoContainer.classList.remove("hidden");
-            if (personalVideo) {
-                personalVideo.play();
-            }
-        });
     }
 
     shuffleTiles();
